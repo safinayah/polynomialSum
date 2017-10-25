@@ -7,7 +7,6 @@ package polynomialsum;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import static java.lang.Integer.parseInt;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -70,13 +69,13 @@ public class Scan {
 
     void pass(String[] expo, String[] coe, LinkedList data) {//a function reads from file and split the string into coefficients and exponents 
 
-      
+        int exp, co = 0; //variables to assign exponet and co values in'em
         File x = new File("polynomial.txt"); //This is used to input the movies text
 
         if (x.exists()) {
 
             // System.out.print("Helloooooooooo");
-            Scanner input = null;
+            Scanner input = null;//initilalize input scanner 
             try {
                 input = new Scanner(x); // Scanning
                 // System.out.println("fvjfdvd  "+input.nextLine());
@@ -91,37 +90,44 @@ public class Scan {
 
                 String line = input.nextLine(); // This is used to get to the next line and trim thm from the sides
                 String[] terms = line.split("(\\+)");
-                
+
                 for (String term : terms) {
                     expo = term.split("\\^");
-                    
-                     coe = expo[0].split("x");
-                    
-                    
-                        if (expo.length > 1 && coe.length == 1){//splits terms with power
-                    
+
+                    coe = expo[0].split("x");
+
+                    if (expo.length > 1 && coe.length == 1) {//splits terms with power
+
                         System.out.println("exponet: " + expo[1] + "\ncoefficientA is : " + coe[0]);
-                        int c = Integer.parseInt(expo[1]);
-                        System.out.println("vvvv"+c);
-             
-                       
+
+                        exp = Integer.parseInt(expo[1]);//parse string expo into int
+                        co = Integer.parseInt(coe[0]);//parse string coe int int
+                        data.insertFirst(exp, co); //adds values to data[]
+
                     } else if (expo.length <= 1 && coe.length == 1) {//split linear terms
-                        System.out.println("exponent is 1"+"\ncoefficientB is :" + coe[0]);
+                        System.out.println("exponent is 1" + "\ncoefficientB is :" + coe[0]);
+                        exp = 1;//expo equals one 
+                        co = Integer.parseInt(coe[0]);////parse string coe into int
+                        data.insertFirst(exp, co); //adds values to data[]
                     }//end if statement
-                    else if(coe.length != 1 && expo.length !=1 ){
-                        System.out.println("exponent is : "+expo[1]+ "\ncoefficient  is 1");
-                    } else if(coe.length != 1 && expo.length ==1 ){
+                    else if (coe.length != 1 && expo.length != 1) {
+                        System.out.println("exponent is : " + expo[1] + "\ncoefficient  is 1");
+                        exp = Integer.parseInt(expo[1]);
+                        co = 1;
+                        data.insertFirst(exp, co); //adds values to data[]
+                    } else if (coe.length != 1 && expo.length == 1) {
                         System.out.println("exponent is : 1 \nexponent is : 1");
+                        exp = co = 1;//expo and co equlas one
+                        data.insertFirst(exp, co); //adds values to data[]
                     }
 
                 }//end enhanced for loop
-                    
-                   // System.out.println("term: " + (expo.length > 1 ? expo[0] : expo[0]+"\ncoe is: "+coe[0]));
-                    
-                }
-                
-            }
+
+                // System.out.println("term: " + (expo.length > 1 ? expo[0] : expo[0]+"\ncoe is: "+coe[0]));
+            }//end of while loop
+
+        }//end of ifExsist is statement
 
     }//end of method
 
-}
+}//end of scan class
