@@ -3,18 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package project;
-
-/**
- *
- * @author ayah
- */
-
-    /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package polynomialsum;
 
 /**
  *
@@ -22,36 +11,28 @@ package project;
  */
 public class Node {
     
-    public int co; //cooficient
+    Node next;//ref to next node
 
-    public Node next; //reference to next node
+    private int co; //cooficient
+
+    private int expo; //exponent
     
-    public int expo; //exponent
-    
-  
-    Node(){}//no args constructor 
-    Node(int co){
-        this.co=co;
-    }
-    Node(int co,Node next, int expo){
-        this.co=co ;
-        this.expo=expo; 
-          
-    }
-    Node(int co,int expo){
-        this.co=co; 
-        
-        this.expo=expo; 
+
+    Node(){ }//no args constructor 
+
+    Node(int co) {//a cosntructor 
+        this.co = co;
         
     }
 
 
-    public void displayLink(){       // display ourself
-      
-      System.out.println("cooficient:  "+ co+ "expo:  "+expo);
-      }
-   }  // end class Node
-    
-    
-    
+    Node(int co, int expo) {//a cosntructor takes coefficient and exponent 
+        this.co = co;
+        this.next=next;
+        this.expo = expo;
 
+    }
+
+
+
+} // end class Node
