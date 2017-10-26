@@ -5,43 +5,31 @@
  */
 package polynomialsum;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+
 
 /**
  *
  * @author ayah
  */
-public class PolynomialSum {
+public class Driver {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws FileNotFoundException {
-        //Application.launch(args);
+    public static void main(String[] args) {
+        Scan s = new Scan();
+        String[] expo = s.getExpo();
+        String[] coe = s.getCoe();
+        Node data = s.getData();
+   LinkedList list = new LinkedList();
+        Node p = new Node() ; 
+        int x= p.numOfLines();
+       // System.out.println("File's line = "+x); 
+        
+       // p.fillData(x, x);
+      //  s.pass(expo, coe, data);
+      System.out.println(list);
 
-        File x = new File("polynomial.txt"); //This is used to input the movies text
+    }//end of main
 
-        if (x.exists()) {
-
-            // System.out.print("Helloooooooooo");
-            Scanner input = new Scanner(x);// Scanning
-            // System.out.println("fvjfdvd  "+input.nextLine());
-
-            while (input.hasNext()) {
-
-                // System.out.println("I CAN SEE THE FILE");
-                int i = 0;
-
-                String line = input.nextLine(); // This is used to get to the next line and trim thm from the sides
-                String[] terms = line.split("(-|\\+)");
-                for (String term : terms) {
-                    String[] parts = term.split("\\^");
-                    System.out.println("Exponent: " + (parts.length > 1 ? parts[0] : parts[0]));
-                }
-            }
-
-        }
-    }
-}
+}//end of class
