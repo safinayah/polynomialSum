@@ -1,51 +1,63 @@
 package polynomialsum;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+class LinkedList {
 
-/**
- *
- * @author ayah
- */
-public class LinkedList {
-   
-
+    private static int counter;
     private Node head;
-    
-    public void insertFirst(int co, int expo) {//make new Node
-        Node firstNode = new Node(co, expo);
-        firstNode.next = head;
-        head = firstNode;
-    }//end of isert first method
-    
-    public void LinkedList() {//constructor
-        head = null;
-    }//end of consructor
-
-    public boolean isEmpty() {
-        return (head == null);
-    }//end if isEmpty method
-
-
-
-    public void displayList() {//displays the list
-        Node curr = head;
-        while (curr != null) {
-           System.out.println(curr);
-            curr = curr.next;
-
-        }//end of while statement
-        System.out.println("");
-
-    }//end of displayList method
-
-    @Override
-    public String toString() {
-        return "LinkedList{" + "head=" + head + '}';
+    private Node last;
+    // Default constructor
+    public LinkedList() {
+        Node n = new Node(); 
+        this.head = n; 
+        this.last=this.head;
+    }
+    // appends the specified element to the end of this list.
+   
+    // appends the specified element to the end of this list.
+    public void add(Node n) {
+        this.last.next = n;
+        this.last = this.last.next;
+        // increment the number of elements variable
+        incrementCounter();
+        
+       
     }
 
-}//end of class
+    private static int getCounter() {
+        return counter;
+    }
+
+    private static void incrementCounter() {
+        counter++;
+    }
+
+    private void decrementCounter() {
+        counter--;
+    }
+
+    // returns the number of elements in this list.
+    public int size() {
+        return getCounter();
+    }
+
+    @Override
+      public String toString() {
+        StringBuilder output = new StringBuilder();
+        Node current = this.head.next;
+ 
+            while (current != null) {
+                output.append(current.toString());
+                current = current.getNext();
+            }
+
+        
+        return output.toString();
+    }
+
+}
